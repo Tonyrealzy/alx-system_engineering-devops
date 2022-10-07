@@ -1,0 +1,2 @@
+chown -R vincent path/to/file
+sudo chown staff root
