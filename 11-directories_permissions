@@ -1,2 +1,0 @@
-#!/bin/bash
-find /path/to/starting/directory -type d -exec chmod +x {} \
