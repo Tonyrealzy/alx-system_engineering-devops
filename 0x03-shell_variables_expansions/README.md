@@ -1,1 +1,1 @@
-TRUE KNOWLEDGE
+print a number with two decimal places
