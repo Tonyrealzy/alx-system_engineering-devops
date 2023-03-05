@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 #change localhost to 127.0.0.2
 #change facebook.com to 8.8.8.8
 
