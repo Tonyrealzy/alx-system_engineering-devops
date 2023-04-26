@@ -1,4 +1,6 @@
-# set up client ssh config to connect to server without typing password
+#set up client ssh config to connect to server without typing password
+
+include stdlib
 
 file_line { 'PasswordAuthentication':
   ensure => 'present',
@@ -9,5 +11,5 @@ file_line { 'PasswordAuthentication':
 file_line { 'IdentityFile':
   ensure => 'present',
   path   => '/etc/ssh/ssh_config',
-  line   => 'IdentityFile ~/.ssh/holberton',
+  line   => 'IdentityFile ~/.ssh/school',
 }
