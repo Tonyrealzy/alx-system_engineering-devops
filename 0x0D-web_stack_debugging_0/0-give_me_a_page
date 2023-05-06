@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 #to get Apache to run on the container and to return a page containing Hello Holberton
 echo "ServerName localhost" >> /etc/apache2.conf
-systemctl status apache2 | grep "apache2 is running"
+systemctl status apache2
 service apache2 start
