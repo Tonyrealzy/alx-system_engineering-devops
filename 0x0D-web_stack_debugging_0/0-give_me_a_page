@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #to get Apache to run on the container and to return a page containing Hello Holberton
-
-sudo service apache2 start
+echo "ServerName localhost" >> /etc/apache2.conf
+service apache2 start
