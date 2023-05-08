@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 #script to ensure Nginx is running and listening on port 80
-echo "ServerName localhost" >> /etc/apache2.conf
-service apache2 start
+# Note: The -s flag creates a symbolic link, -f deletes the existing file and replaces it.
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
