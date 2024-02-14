@@ -26,3 +26,7 @@ EOF'
 
 # Restart Nginx without using systemctl
 sudo service nginx restart
+
+sudo ngink -s reload
+
+sudo curl localhost
