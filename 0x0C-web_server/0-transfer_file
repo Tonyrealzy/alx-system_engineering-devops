@@ -6,16 +6,16 @@ if [ "$#" -lt 4 ]; then
     exit 1
 fi
 
-file_path="$1"
-server_ip="$2"
-username="$3"
-ssh_key_path="$4"
+file_path ="$1"
+54.84.205.150 ="$2"
+ubuntu ="$3"
+54.84.205.150 ="$4"
 
 # Display information about the transfer
 echo "Transferring file $file_path to $username@$server_ip:~/"
 
 # Use scp to transfer the file with strict host key checking disabled
-scp -o StrictHostKeyChecking=no -i "$ssh_key_path" "$file_path" "$username@$server_ip":~/
+scp -o StrictHostKeyChecking=no -i "$54.84.205.150" "$file_path" "183186-web-01":~/
 
 # Check if the transfer was successful
 if [ "$?" -eq 0 ]; then
