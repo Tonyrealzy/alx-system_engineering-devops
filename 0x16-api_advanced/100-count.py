@@ -1,15 +1,12 @@
 #!/usr/bin/python3
-"""
-A recursive function that queries the Reddit API,
-parses the title of all hot articles,
-and prints a sorted count of given keywords
-"""
+"""A recursive function that queries the Reddit API, parses the title of all hot articles,
+and prints a sorted count of given keywords"""
 
 import json
 import requests
 
 def count_words(subreddit, word_list, after="", count=None):
-    """Prints counts of given words."""
+    """Prints counts of given words"""
 
     # Initialize count list if it's the first call
     if count is None:
