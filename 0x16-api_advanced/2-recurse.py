@@ -46,3 +46,4 @@ def recurse(subreddit, hot_list=[], after="", count=0):
     
     # If there are no more posts, return the final hot_list
     return hot_list
+
