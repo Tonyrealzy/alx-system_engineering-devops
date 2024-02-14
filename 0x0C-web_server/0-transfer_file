@@ -20,7 +20,7 @@ ssh_key_path="$4"
 echo "Transferring file $file_path to $ubuntu@$server_ip:~/"
 
 # Use scp to transfer the file with strict host key checking disabled
-scp -o StrictHostKeyChecking=no -i "$ssh_key_path" "$file_path" "$ubuntu@$54.84.205.150":~/
+scp -o StrictHostKeyChecking=no -i "$ssh_key_path" "$file_path" "$ubuntu@$server_ip":~/
 
 # Check if the transfer was successful
 if [ "$?" -eq 0 ]; then
