@@ -16,7 +16,7 @@ server {
     root /var/www/html;
     index index.html;
 
-    server_name _;
+    server_name nginx;
 
     location / {
         try_files \$uri \$uri/ =404;
