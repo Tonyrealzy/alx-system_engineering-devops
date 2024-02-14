@@ -17,7 +17,7 @@ ssh_key_path="$4"
 # ssh_key_path="$4"
 
 # Display information about the transfer
-echo "Transferring file $file_path to $ubuntu@$54.84.205.150:~/"
+echo "Transferring file $file_path to $ubuntu@$server_ip:~/"
 
 # Use scp to transfer the file with strict host key checking disabled
 scp -o StrictHostKeyChecking=no -i "$ssh_key_path" "$file_path" "$ubuntu@$54.84.205.150":~/
