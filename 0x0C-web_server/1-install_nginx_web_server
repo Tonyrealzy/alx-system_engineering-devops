@@ -1,32 +1,23 @@
 #!/usr/bin/env bash
-#write a Bash script that configures a new Ubuntu machine to respect above requirements (this script will be run on the server itself)
+# write a Bash script that configures a new Ubuntu machine to respect above requirements (this script will be run on the server itself
 
-sudo apt-get update
-sudo apt-get install -y nginx
+# Step 1: Update the package list
+sudo apt update
 
-# Create a basic HTML file with "Hello World!"
-echo "<html><body><h1>Hello World!</h1></body></html>" | sudo tee /var/www/html/index.html > /dev/null
+# Step 2: Install Nginx
+sudo apt -y install nginx
 
-# Replace the default Nginx configuration to listen on port 80
-sudo bash -c 'cat > /etc/nginx/sites-available/default <<EOF
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
+# Step 3: Change ownership of HTML files in /var/www/html/
+sudo chown -R "$USER":"$USER" /var/www/html/*.html
 
-    root /var/www/html;
-    index index.html;
+# Step 4: Write "Hello World!" to HTML files in /var/www/html/
+echo "Hello World!" > /var/www/html/*.html
 
-    server_name 183186-web-01;
+# Step 5: Start the Nginx service
+sudo service nginx start
 
-    location / {
-        try_files \$uri \$uri/ =404;
-    }
-}
-EOF'
-
-# Restart Nginx without using systemctl
-sudo service nginx restart
-
+# Step 6: Reload Nginx to apply changes
 sudo ngink -s reload
 
+# Step 7: Use curl to make a request to the Nginx server running on localhost
 sudo curl localhost
