@@ -7,14 +7,9 @@ if [ "$#" -lt 4 ]; then
 fi
 
 file_path="$1"
-54.84.205.150="$2"
+server_ip="$2"
 ubuntu="$3"
 ssh_key_path="$4"
-
-# file_path="$1"
-# server_ip="$2"
-# ubuntu="$3"
-# ssh_key_path="$4"
 
 # Display information about the transfer
 echo "Transferring file $file_path to $ubuntu@$server_ip:~/"
