@@ -1,2 +1,28 @@
 #!/usr/bin/env bash
 #write a Bash script that configures a new Ubuntu machine to respect above requirements (this script will be run on the server itself)
+
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# Create a basic HTML file with "Hello World!"
+echo "<html><body><h1>Hello World!</h1></body></html>" | sudo tee /var/www/html/index.html > /dev/null
+
+# Replace the default Nginx configuration to listen on port 80
+sudo bash -c 'cat > /etc/nginx/sites-available/default <<EOF
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html;
+
+    server_name _;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOF'
+
+# Restart Nginx without using systemctl
+sudo service nginx restart
