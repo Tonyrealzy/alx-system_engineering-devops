@@ -1,2 +1,47 @@
 # #!/usr/bin/env bash
 # Configure your Nginx server so that /redirect_me is redirecting to another page.
+
+# Step 1: Update the package list
+apt-get update
+
+# Step 2: Install Nginx
+apt-get -y install nginx
+
+# Step 3: Allow incoming HTTP traffic through UFW
+sudo ufw allow 'Nginx HTTP'
+
+# Step 4: Create the directory for web content
+mkdir -p /var/www/html/
+
+# Step 5: Set permissions for the web directory
+sudo chmod -R 755 /var/www
+
+# Step 6: Write 'Hello World!' to the default HTML file
+echo 'Hello World!' > /var/www/html/index.html
+
+
+# Step 7: Define Nginx server configuration
+SERVER_CONFIG=\
+"server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+	server_name _;
+	location / {
+		try_files \$uri \$uri/ =404;
+	}
+	if (\$request_filename ~ redirect_me){
+		rewrite ^ https://sketchfab.com/bluepeno/models permanent;
+	}
+}"
+
+# Step 8: Apply the server configuration to Nginx default site
+bash -c "echo -e '$SERVER_CONFIG' > /etc/nginx/sites-enabled/default"
+
+# Step 9: Check if Nginx is running and start or restart accordingly
+if [ "$(pgrep -c nginx)" -le 0 ]; then
+    service nginx start
+else
+    service nginx restart
+fi
