@@ -13,8 +13,8 @@ def number_of_subscribers(subreddit):
     
     # Define headers for the HTTP request, including a User-Agent
     headers = {
-        #"User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
-        "User-Agent": "CustomUserAgent/1.0 (by /u/tonyrealzy)"
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/tonyrealzy)"
+        #"User-Agent": "CustomUserAgent/1.0 (by /u/tonyrealzy)"
     }
     
     # Send an HTTP GET request to the specified URL with the provided headers
