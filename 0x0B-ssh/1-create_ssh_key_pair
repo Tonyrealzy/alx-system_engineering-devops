@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#script that creates an RSA key pair
+
+ssh-keygen -f school -N betty -t RSA -b 4096
