@@ -21,8 +21,8 @@ if __name__ == "__main__":
                 "task": t.get("title"),
                 "completed": t.get("completed"),
                 "username": u.get("username")
-            } for t in requests.get(url + "todos", 
-                params={"userId": u.get("id")}).json()
+            } for t in requests.get(url + "todos",
+                                    params={"userId": u.get("id")}).json()
         ] for u in users
     }
     # Write the JSON data to a file
