@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Function to query subscribers(not active users, total subscribers) for a given subreddit"""
+"""Function to query subscribers (total subscribers) for a given subreddit"""
 import requests
 
 # Function definition to get the number of subscribers for a given subreddit
@@ -8,8 +8,6 @@ def number_of_subscribers(subreddit):
     
     # Construct the URL to retrieve subreddit information in JSON format
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    
-    # OR url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     
     # Define headers for the HTTP request, including a User-Agent
     headers = {
@@ -29,4 +27,3 @@ def number_of_subscribers(subreddit):
         return data.get("subscribers")
     
     return 0
-
