@@ -23,10 +23,10 @@ def number_of_subscribers(subreddit):
     # Check if the response status code indicates success
     if response.status_code // 100 == 2:      
         # Parse the JSON response and extract the "data" section
-        outcome = response.json().get("outcome")
+        data = response.json().get("data")
         
         # Return the number of subscribers from the "subscribers" key in the "data" section
-        return outcome.get("subscribers")
+        return data.get("subscribers")
     
     return 0
 
