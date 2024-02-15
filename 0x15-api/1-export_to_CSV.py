@@ -5,9 +5,9 @@ import requests
 import sys
 
 if __name__ == "__main__":
-    # if len(sys.argv) != 2:
-    #     print("Usage: python script_name.py <employee_id>")
-    #     sys.exit(1)
+    if len(sys.argv) < 2:
+        print("Usage: python script_name.py <employee_id>")
+        sys.exit(1)
     # Get the user ID from the command-line argument
     user_id = sys.argv[1]
     # Base URL for the JSONPlaceholder API
@@ -33,4 +33,3 @@ if __name__ == "__main__":
         for todo in todos:
             writer.writerow([user_id, username, todo.get("completed"),
                              todo.get("title")])
-            
