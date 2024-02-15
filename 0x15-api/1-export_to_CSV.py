@@ -31,5 +31,6 @@ if __name__ == "__main__":
         writer.writerow(["User ID", "Username", "Completed", "Title"])
         # Write each to-do item as a row in the CSV file
         for todo in todos:
-            writer.writerow([user_id, username, todo.get("completed"),
-                             todo.get("title")])
+            writer.writerow([user_id, username, 
+                             todo.get("completed"), todo.get("title")])
+            
