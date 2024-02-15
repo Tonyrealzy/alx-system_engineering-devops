@@ -25,7 +25,7 @@ if __name__ == "__main__":
         sys.exit(1)
         # Open a JSON file for writing
     with open("{}.json".format(user_id), "w") as jsonfile:
-        # Create a dictionary with user ID as the 
+        # Create a dictionary with user ID as the
         # key and a list of to-do items as the value
         json_data = {
             user_id: [
