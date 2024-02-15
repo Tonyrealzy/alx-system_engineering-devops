@@ -7,7 +7,7 @@ def number_of_subscribers(subreddit):
     """Return the total number of subscribers on a given subreddit."""
     
     # Construct the URL to retrieve subreddit information in JSON format
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     
     # Define headers for the HTTP request, including a User-Agent
     headers = {
