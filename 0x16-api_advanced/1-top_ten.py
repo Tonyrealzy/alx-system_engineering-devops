@@ -16,15 +16,10 @@ def top_ten(subreddit):
     # Send an HTTP GET request to the specified URL with the provided headers and parameters
     data = requests.get(url, headers=headers, allow_redirects=False)
     
-    # Check if the response status code is 404 (Not Found)
-    if data.status_code == 404:
-        print("None")
-        return
-    
-    # Parse the JSON response and extract the "data" section
-    results = data.json().get("data")
-    
-    # Print the titles of the 10 hottest posts
-    [print(child.get("data").get("title"))
-     for child in results.get("children")]
-
+    # Check if the response status code is 200
+    if data.status_code == 200:
+        data = data.json().get("data").get("children")
+        for element in data:
+            print(element.get("data").get("title"))
+    else:
+        print(None)
