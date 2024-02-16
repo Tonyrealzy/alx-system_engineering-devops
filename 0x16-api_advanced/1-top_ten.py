@@ -14,7 +14,8 @@ def top_ten(subreddit):
     header = {
         "User-Agent": "linux:0x16.api.advanced:v1.0.0"
     }
-    # Send an HTTP GET request to the specified URL with the provided headers and parameters
+    # Send an HTTP GET request to the specified URL with the
+    # provided headers and parameters
     data = requests.get(url, headers=header, allow_redirects=False)
     # Check if the response status code is 200
     if data.status_code == 200:
@@ -23,3 +24,4 @@ def top_ten(subreddit):
             print(element.get("data").get("title"))
     else:
         print(None)
+        
