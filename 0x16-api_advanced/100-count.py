@@ -1,9 +1,12 @@
 #!/usr/bin/python3
-"""A recursive function that queries the Reddit API, parses the title of all hot articles,
+"""A recursive function that queries the Reddit API, parses
+the title of all hot articles,
+
 and prints a sorted count of given keywords"""
 
 import json
 import requests
+
 
 def count_words(subreddit, word_list, after="", count=None):
     """Prints counts of given words"""
@@ -12,10 +15,12 @@ def count_words(subreddit, word_list, after="", count=None):
     if count is None:
         count = [0] * len(word_list)
 
-    # Construct the URL for querying hot articles in JSON format for the specified subreddit
+    # Construct the URL for querying hot articles in JSON
+    # format for the specified subreddit
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
 
-    # Send an HTTP GET request to the specified URL with the provided parameters
+    # Send an HTTP GET request to the specified URL with
+    # the provided parameters
     response = requests.get(url, params={'after': after}, allow_redirects=False, headers={'user-agent': 'bhalut'})
 
     # Check if the request was successful (status code 200)
@@ -25,7 +30,8 @@ def count_words(subreddit, word_list, after="", count=None):
 
         # Iterate through each article in the response
         for topic in data['data']['children']:
-            # Split the title into words and check for matches with the given word_list
+            # Split the title into words and check for matches
+            # with the given word_list
             for word in topic['data']['title'].split():
                 for i, target_word in enumerate(word_list):
                     if target_word.lower() == word.lower():
@@ -60,12 +66,11 @@ def count_words(subreddit, word_list, after="", count=None):
                 if count[i] > 0 and i not in save:
                     print(f"{word_list[i].lower()}: {count[i]}")
         else:
-            # If there are more articles, recursively call the function with updated parameters
+            # If there are more articles, recursively call the
+            # function with updated parameters
             count_words(subreddit, word_list, after, count)
 
 # Example usage:
 subreddit_name = "python"
 keywords_list = ["Python", "programming", "reddit"]
 count_words(subreddit_name, keywords_list)
-
-
