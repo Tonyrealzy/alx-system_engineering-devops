@@ -10,11 +10,11 @@ def top_ten(subreddit):
     url = f"https://www.reddit.com/r/{subreddit}/hot/.json"
     
     # Define headers for the HTTP request, including a User-Agent
-    headers = {
+    header = {
         "User-Agent": "linux:0x16.api.advanced:v1.0.0"
     }
     # Send an HTTP GET request to the specified URL with the provided headers and parameters
-    data = requests.get(url, headers=headers, allow_redirects=False)
+    data = requests.get(url, headers=header, allow_redirects=False)
     
     # Check if the response status code is 200
     if data.status_code == 200:
