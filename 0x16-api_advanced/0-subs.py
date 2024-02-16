@@ -15,7 +15,7 @@ def number_of_subscribers(subreddit):
     # Send an HTTP GET request to the specified URL with the provided headers
     data = requests.get(url, headers=header, allow_redirects=False)
     # Check if the response status code indicates success
-    if data.status_code == 200:      
+    if data.status_code == 200:
         # Parse the JSON response and extract the "data" section
         subscribers = data.json().get("data").get("subscribers")
         # Return the number of subscribers from the "subscribers" key in
