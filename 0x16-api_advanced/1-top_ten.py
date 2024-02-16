@@ -11,25 +11,20 @@ def top_ten(subreddit):
     
     # Define headers for the HTTP request, including a User-Agent
     headers = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/tonyrealzy)"
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0"
     }
-    
-    # Define parameters for the request, limiting the response to 10 posts
-    params = {
-        "limit": 10
-    }
-    
     # Send an HTTP GET request to the specified URL with the provided headers and parameters
-    response = requests.get(url, headers=headers, params=params, allow_redirects=False)
+    data = requests.get(url, headers=headers, allow_redirects=False)
     
     # Check if the response status code is 404 (Not Found)
-    if response.status_code == 404:
+    if data.status_code == 404:
         print("None")
         return
     
     # Parse the JSON response and extract the "data" section
-    results = response.json().get("data")
+    results = data.json().get("data")
     
     # Print the titles of the 10 hottest posts
-    [print(child.get("data").get("title")) for child in results.get("children")]
+    [print(child.get("data").get("title"))
+     for child in results.get("children")]
 
