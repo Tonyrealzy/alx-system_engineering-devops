@@ -10,7 +10,6 @@ def recurse(subreddit, hot_list=[], after=""):
     # Construct the URL for querying hot posts in JSON
     # format for the specified subreddit
     url = f"https://www.reddit.com/r/{subreddit}/hot/.json"
-    
     # Define headers for the HTTP request, including a User-Agent
     headers = {
         "User-Agent": "linux:0x16.api.advanced:v1.0.0"
