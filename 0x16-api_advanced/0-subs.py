@@ -20,7 +20,7 @@ def number_of_subscribers(subreddit):
     # Check if the response status code indicates success
     if data.status_code == 200:      
         # Parse the JSON response and extract the "data" section
-        data = data.json().get("data")
+        subscribers = data.json().get("data").get("subscribers")
         # Return the number of subscribers from the "subscribers" key in the "data" section
-        return data.get("subscribers")
+        return subscribers
     return 0
