@@ -22,7 +22,8 @@ def count_words(subreddit, word_list, after="", count=None):
     # Send an HTTP GET request to the specified URL with
     # the provided parameters
     response = requests.get(url, params={'after': after},
-                            allow_redirects=False, headers={'user-agent': 'bhalut'})
+                            allow_redirects=False,
+                            headers={'user-agent': 'bhalut'})
 
     # Check if the request was successful (status code 200)
     if response.status_code == 200:
