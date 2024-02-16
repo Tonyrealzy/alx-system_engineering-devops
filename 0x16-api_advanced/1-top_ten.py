@@ -2,6 +2,7 @@
 """Function to print the titles of the first 10 hot posts on a given Reddit subreddit."""
 import requests
 
+
 # Function definition to print the titles of the 10 hottest posts on a given subreddit
 def top_ten(subreddit):
     """Print the titles of the 10 hottest posts on a given subreddit."""
