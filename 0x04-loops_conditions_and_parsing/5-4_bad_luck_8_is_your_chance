@@ -17,4 +17,4 @@ do
 		echo "Best School";
 	fi
 	(( i++ ));
-doness
+done
