@@ -1,24 +1,73 @@
 #!/usr/bin/env bash
 # Configure Nginx server to have a custom 404 page that contains the string Ceci n'est pas une page
 
-# Install nginx
+STUDENT_ID="183186"
+WEB_SERVER_1="54.84.205.150"
+WEB_SERVER_2="52.91.131.132"
+
+# Update the package list
 sudo apt-get update
-sudo apt-get install -y nginx
 
-# Creating Sample Page
-echo "Hello World!" > /var/www/html/index.html
+# Install HAProxy
+sudo apt-get install -y haproxy
 
-# add the following configuration to the existing server block
-string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.google.com permanent;"
-sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
+# Configure HAProxy
+sudo tee /etc/haproxy/haproxy.cfg > /dev/null <<EOL
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    chroot /var/lib/haproxy
+    stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
+    stats timeout 30s
+    user haproxy
+    group haproxy
+    daemon
 
-# code for error page and redirect error 404
-echo "Ceci n'est pas une page" > /var/www/html/404.html
-string_for_replacement="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
-sudo sed -i "s/listen 80 default_server;/$string_for_replacement/" /etc/nginx/sites-available/default
+defaults
+    log global
+    mode http
+    option httplog
+    option dontlognull
+    timeout connect 5000
+    timeout client 50000
+    timeout server 50000
 
-# code for http_response_header
-sudo sed -i '/^http {/a \\tadd_header X-Served-By $hostname;' /etc/nginx/nginx.conf
+frontend main
+    bind *:80
+    default_backend app
 
-# Reload Nginx
-sudo service nginx restart
+backend app
+    balance roundrobin
+    server web-01 ${183186}-web-01:${54.84.205.150} check
+    server web-02 ${183186}-web-02:${52.91.131.132} check
+EOL
+
+# Ensure HAProxy can be managed via an init script
+sudo systemctl enable haproxy
+sudo systemctl restart haproxy
+
+# Display a message indicating successful configuration
+echo "HAProxy has been installed and configured successfully."
+
+
+# # Install nginx
+# sudo apt-get update
+# sudo apt-get install -y nginx
+
+# # Creating Sample Page
+# echo "Hello World!" > /var/www/html/index.html
+
+# # add the following configuration to the existing server block
+# string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.google.com permanent;"
+# sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
+
+# # code for error page and redirect error 404
+# echo "Ceci n'est pas une page" > /var/www/html/404.html
+# string_for_replacement="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+# sudo sed -i "s/listen 80 default_server;/$string_for_replacement/" /etc/nginx/sites-available/default
+
+# # code for http_response_header
+# sudo sed -i '/^http {/a \\tadd_header X-Served-By $hostname;' /etc/nginx/nginx.conf
+
+# # Reload Nginx
+# sudo service nginx restart
