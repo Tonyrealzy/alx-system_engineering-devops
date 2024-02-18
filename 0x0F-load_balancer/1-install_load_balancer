@@ -12,15 +12,15 @@ sudo sed -i 's/^\(ENABLED=\).*/\11/' /etc/default/haproxy
 # Create a new HAProxy configuration file
 echo \
 	"
-frontend davidking.tech
+frontend realzy.tech
 	bind *:80
 	mode http
-	default_backend davidking.tech
-backend davidking.tech
+	default_backend realzy.tech
+backend realzy.tech
 	mode http
 	balance roundrobin
-	server 292197-web-01 18.215.160.57
-	server 292197-web-02 3.80.18.18" >> /etc/haproxy/haproxy.cfg
+	server 183186-web-01 54.84.205.150
+	server 183186-web-02 52.91.131.132 >> /etc/haproxy/haproxy.cfg
 
 # Restart HAProxy service
 sudo service haproxy restart
