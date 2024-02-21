@@ -1,0 +1,1 @@
+This folder contains files that handle my '0x1A-application_server' tasks.
